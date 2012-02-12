@@ -17,5 +17,20 @@ describe "Users" do
       end.should_not change(User, :count)
       end
     end
+    
+    describe "success" do
+      
+      it "should make a new user" do
+        lambda do
+          visit signup_path
+          fill_in "Name",         :with => "Jeremy Lin"
+          fill_in "Email",        :with => "jlin@nyk.com"
+          fill_in "Password",        :with => "linfever"
+          fill_in "confirmation",        :with => "linfever"
+          click_button
+        end
+      end
+      
+    end
   end
 end
