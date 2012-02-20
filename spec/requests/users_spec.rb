@@ -28,6 +28,8 @@ describe "Users" do
           fill_in "Password",        :with => "linfever"
           fill_in "confirmation",        :with => "linfever"
           click_button
+          response.should render_template('user/show')
+          response.should have_selector('div.flash.success')
         end
       end
       

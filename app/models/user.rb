@@ -31,12 +31,18 @@ class User < ActiveRecord::Base
   end
   
   #class method definition
- 
-  def self.authen(email, submitted_password)
+ class << self
+  def authen(email, submitted_password)
     user = find_by_email(email)
     return nil if user.nil?
     return user if user.has_password?(submitted_password)
   end
+
+  def authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    (user && user.salt == cookie_salt) ? user : nil #terinary operator
+  end
+end
   
   private
   
