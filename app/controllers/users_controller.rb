@@ -14,7 +14,9 @@ class UsersController < ApplicationController
     #raise params[:user].inspect use for debugging
     @user = User.new(params[:user])
     if @user.save
+      sign_in(@user)
       redirect_to @user, :flash => {:success => "welcome"}
+
       
       #handle a successful save
     else
